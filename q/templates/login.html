@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+</head>
+<body>
+
+    <ul class="errors position-absolute top-50 start-50 translate-middle-x d-grid gap-3">
+        {% for message in messages %}
+        <li><p style="color: red;">{{ message }}</p></li>
+        {% endfor %}
+    </ul>
+    <div class="container">
+        <div class="position-absolute top-0 start-0 d-grid gap-3">
+            <h3>Register</h3>
+            <form action="/create_user" method="post" class="d-grid gap-3">
+                {% csrf_token %}
+                <div class="row mb-3">
+                    <label class="col-sm-6 col-form-label">First Name</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="first_name">
+                    </div>    
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-6 col-form-label">Last Name</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="last_name">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-6 col-form-label">Email</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="email">
+                    </div>    
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-6 col-form-label">Password</label>
+                    <div class="col-sm-6">
+                        <input type="password" name="password">
+                    </div>    
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-6 col-form-label">Confirm Pw</label>
+                    <div class="col-sm-6">
+                        <input type="password" name="pw_confirm">
+                    </div>    
+                </div>
+
+                <button class="btn btn-primary ">Register</button>
+            </form>
+        </div>
+        <div class="position-absolute top-0 start-50 translate-middle-x d-grid gap-3">
+            <h3>Login</h3>
+            <form action="/login" method="post" class="d-grid gap-3">
+                {% csrf_token %}
+                <div class="row mb-3">
+                    <label class="col-sm-6 col-form-label">Email</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="email">
+                    </div>    
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-6 col-form-label">Password</label>
+                    <div class="col-sm-6">
+                        <input type="password" name="password">
+                    </div>    
+                </div>
+                <button class="btn btn-primary ">Login</button>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>

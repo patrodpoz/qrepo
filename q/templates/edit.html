@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h5 style="text-align: right"><a href="/logout" style="margin: 20px">Logout</a> | <a href="/quotes">Back to Quotes</a></h5>
+        <h1>Edit Your Quote</h1>
+
+        
+        <form action="/edit/{{quote.id}}" method="POST">
+            {% csrf_token %}
+            <label for="">Author</label>
+            <br>
+            <input type="text" value="{{quote.author}}" name="author">
+            <br>
+            <div class="mb4">
+            <label for="">Message</label>
+            <br>
+            <textarea class="form-control" type="text"  value="{{quote.message}}" name="message"></textarea>
+            </div>
+            <br><br><br>
+            <input class="btn btn-secondary "  type="submit"  >
+            <a  class="btn btn-primary " href='/quotes'>Go Back</a>
+        </form>
+    
+    </div>
+    <ul class="errors position-absolute top-50 start-50 translate-middle-x d-grid gap-3">
+        {% for message in messages %}
+        <li><p style="color: red;">{{ message }}</p></li>
+        {% endfor %}
+    </ul>
+    
+</body>
+</html>

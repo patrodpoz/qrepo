@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Document</title>
+</head>
+<body>
+    <h5 style="text-align: right"><a href="/logout" style="margin: 20px">Logout</a></h5>
+    <h2>Welocome {{current_user.first_name}}</h2>
+    <br><br><br>
+    <div class="container row g-3">
+        
+        <div class= "container col ">
+            <h3>Quotable Quotes:</h3>
+            
+        <div class="container p-4 border border-primary">
+            {% for quote in quotes %}
+                
+                <div class="border p-2">
+                    {%if current_user == quote.quoter %}<a href="/eliminate_quote/{{quote.id}}">Eliminate</a> | <a href="/edit_quote/{{quote.id}}">Edit</a></h5>{%endif%}
+                    <h5>{{quote.author}}</h5>
+                    <h5>{{quote.message}}</h5>
+                    <h5>Posted by:<a href="/profile/{{quote.quoter.id}}">{{quote.quoter.first_name}}</a> | <a href="/favorite/{{quote.id}}">Add to Favorites</a></h5>
+                </div>
+                    <br><br><br>
+            {% endfor %}
+           
+        </div>
+    </div>
+        <div class="container col">
+            
+                <h3>Your Favorite Quotes:</h3>
+                <div class="container p-4 border border-primary">    
+                {% for quote in liked%}
+                <div class="border p-2">
+                <h5>{{quote.author}}: {{quote.message}}</h5>
+                <h6>Posted by:<a href="/profile/{{quote.quoter.id}}">{{quote.quoter.first_name}} | <a href="/unfavorite/{{quote.id}}">Remove from Favorites</a></h6>
+                </div>
+                <br><br><br>
+
+                {%endfor%}
+            </div>
+            <br><br><br>
+                <div class="container border border-success">
+                    <br>
+                    <br>
+                    <h4>Create a Quote:</h4>
+                    <br>
+                    <div class="container border border-success p-4">
+                    <form action="/create_quote" method="post" class="d-grid gap-3">
+                        {% csrf_token %}
+                        <div class="row mb-3 p-2">
+                            <label class="col-sm-6 col-form-label">Quote by:</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="author">
+                            </div>    
+                        </div>
+                        <div class="row mb-3 p-2">
+                            <label class="col-sm-6 col-form-label">Message:</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="message">
+                            </div>
+                        </div>
+                            <button>Create</button>
+                            <br><br>
+                            
+                        </div>
+                        <ul class="errors position-absolute top-50 start-50 translate-middle-x d-grid gap-3">
+                            {% for message in messages %}
+                            <li><p style="color: red;">{{ message }}</p></li>
+                            {% endfor %}
+                        </ul>
+                        <br><br><br>
+                    </div>   
+                        
+
+        </div>
+                    
+            </div>
+        
+</body>
+</html>

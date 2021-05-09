@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Document</title>
+</head>
+<body>
+    <h5 style="text-align: right"><a href="/logout" style="margin: 20px">Logout</a> | <a href="/quotes" style="margin: 30px">Back to Quotes</a></h5>
+    <div class="container">
+    <h5>Posted by: {{quoter.first_name}}</h5>
+    <h5>Count:{{quotes.all.count}} </h5>
+    
+    
+            
+    <br>
+    {% for quote in quotes %}
+    {{ quote.author }} : {{ quote.message }}
+    <br><br>
+    {% endfor %}
+   
+    </div>
+</body>
+</html>
